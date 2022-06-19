@@ -15,4 +15,10 @@ public class HomeController {
     public String test(){
         return service.test();
     }
+
+    @GetMapping("/2")
+    public String test2(){
+        return service.test2();
+    }
+
 }

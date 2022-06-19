@@ -30,4 +30,7 @@ public class HomeService {
         return findEntity.toString();
     }
 
+    public String test2(){
+        return homeRepo.test();
+    }
 }
