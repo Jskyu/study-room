@@ -26,7 +26,7 @@ public class BoardEntity {
     private Long boardId;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_INDEX")
     private UserEntity user;
 
     @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)

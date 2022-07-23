@@ -26,7 +26,7 @@ public class CommentEntity {
     private Long upCommentsId;
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_INDEX")
     @Comment("작성자 ID")
     private UserEntity user;
 
