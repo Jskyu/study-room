@@ -1,4 +1,4 @@
-package ond.studyroom.temporary;
+package ond.studyroom.temp;
 
 import lombok.RequiredArgsConstructor;
 import ond.studyroom.entity.AuthEntity;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor
