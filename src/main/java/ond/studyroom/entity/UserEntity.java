@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@ToString
 public class UserEntity {
 
     @Id
@@ -32,7 +33,7 @@ public class UserEntity {
     @Comment("유저 명")
     private String username;
 
-    @Column(name = "USER_HP", length = 12, nullable = false)
+    @Column(name = "USER_HP", length = 13, nullable = false)
     @Comment("유저 휴대폰 번호")
     private String userHp;
 
@@ -67,4 +68,15 @@ public class UserEntity {
     @ColumnDefault("0")
     @Comment("비밀번호 실패 횟수")
     private int failPwCnt;
+
+    public UserEntity(String userId, String userNick, String username, String userHp, String userMail, AuthEntity auth, String authYn, LocalDateTime regDate) {
+        this.userId = userId;
+        this.userNick = userNick;
+        this.username = username;
+        this.userHp = userHp;
+        this.userMail = userMail;
+        this.auth = auth;
+        this.authYn = authYn;
+        this.regDate = regDate;
+    }
 }

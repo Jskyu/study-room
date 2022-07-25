@@ -12,6 +12,7 @@ import static javax.persistence.FetchType.LAZY;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@ToString
 public class BoardFileEntity {
 
     @Id
