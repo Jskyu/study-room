@@ -3,12 +3,15 @@ package ond.studyroom.entity.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ond.studyroom.entity.BoardEntity;
 import ond.studyroom.entity.CategoryEntity;
 import ond.studyroom.entity.UserEntity;
 
-@Data @Builder
+@Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class BoardDto {
 
     private Long id;
@@ -33,7 +36,7 @@ public class BoardDto {
         this.content = content;
     }
 
-    public BoardEntity toEntity(BoardDto dto, UserEntity user, CategoryEntity category){
+    public BoardEntity toEntity(BoardDto dto, UserEntity user, CategoryEntity category) {
         return BoardEntity.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
