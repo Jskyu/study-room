@@ -2,11 +2,23 @@
 
 ## Installation
 
+`git clone https://github.com/Jskyu/study-room.git`
+
+### Springboot
 ```
-git clone https://github.com/Jskyu/study-room.git
 gradlew clean
 gradlew compile
 gradlew bootrun
+```
+
+### React
+```
+cd ${ProjectPath}/src/main/frontend
+npm install react-router-dom@6 --save
+npm install react-bootstrap --save
+npm install http-proxy-middleware --save
+
+npm start
 ```
 
 ## Tech/Framework Used
