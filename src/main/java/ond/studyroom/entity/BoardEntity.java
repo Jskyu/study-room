@@ -1,6 +1,7 @@
 package ond.studyroom.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,7 +17,8 @@ import static javax.persistence.FetchType.LAZY;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@ToString
 public class BoardEntity {
 
     @Id
@@ -67,6 +69,7 @@ public class BoardEntity {
     private LocalDateTime modDate;
 
     @Column(name = "DEL_YN", length = 1)
+    @ColumnDefault("'N'")
     @Comment("삭제여부YN")
     private String delYn;
 }
