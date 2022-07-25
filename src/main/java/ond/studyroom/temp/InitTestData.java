@@ -41,7 +41,7 @@ public class InitTestData {
             em.persist(UserEntity.builder()
                     .userId("seoma")
                     .userNick("서마")
-                    .username("서마")
+                    .username("정성규")
                     .userHp("010-8193-7533")
                     .userMail("hisunggyu@gmail.com")
                     .auth(auth)

@@ -6,7 +6,6 @@ import org.hibernate.annotations.Comment;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +59,13 @@ public class BoardEntity {
 
     @Column(name = "REG_DATE")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ColumnDefault("NOW()")
     @Comment("등록일자")
     private LocalDateTime regDate;
 
     @Column(name = "MOD_DATE")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ColumnDefault("NOW()")
     @Comment("수정일자")
     private LocalDateTime modDate;
 
@@ -72,4 +73,9 @@ public class BoardEntity {
     @ColumnDefault("'N'")
     @Comment("삭제여부YN")
     private String delYn;
+
+    public void setRegAndModDate() {
+        this.regDate = LocalDateTime.now();
+        this.modDate = LocalDateTime.now();
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -19,15 +20,16 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @CrossOrigin
     @GetMapping("/api/board/getBoardList")
-    public Result<List<BoardDto>> getBoardList() {
+    public Result<?> getBoardList() {
         log.info("Board API : getBoardList.");
-        List<BoardDto> findList = boardService.getBoardList().stream()
-                .map(BoardDto::EntityToDto)
-                .collect(Collectors.toList());
-        return new Result<>(findList, HttpStatus.OK);
+        List<BoardDto> boardList = boardService.getBoardList();
+        if(boardList.size() > 0) return new Result<>(boardList, HttpStatus.OK);
+        else return new Result<>("", HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/api/board/getBoard/{id}")
     public Result<BoardDto> getBoard(@PathVariable("id") Long boardId) {
         log.info("Board API : getBoard. Request ID : " + boardId);
@@ -36,6 +38,32 @@ public class BoardController {
         return new Result<>(BoardDto.EntityToDto(findBoard), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @PostMapping("/api/board/createBoard")
+    public Result<String> createBoard(
+            @RequestBody Map<String, Object> paramMap) {
+        log.info(String.format("Board API : createBoard. Request Param : " + paramMap));
+        Long cateId = null;
+        try {
+            cateId = Long.parseLong(paramMap.get("cateId").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<>("failed", HttpStatus.BAD_REQUEST);
+        }
+        Long boardId = boardService.createBoard(
+                BoardDto.builder()
+                        .userId(paramMap.get("userId").toString())
+                        .categoryId(cateId)
+                        .title(paramMap.get("title").toString())
+                        .content(paramMap.get("content").toString())
+                        .build()
+        );
+        log.info("Board Save. ID : " + boardId);
+
+        return new Result<>(boardId.toString(), HttpStatus.OK);
+    }
+
+    /*
     @PostMapping("/api/board/createBoard")
     public Result<String> createBoard(
             @RequestParam(value = "userId", required = false) String userId,
@@ -63,4 +91,5 @@ public class BoardController {
 
         return new Result<>(boardId.toString(), HttpStatus.OK);
     }
+     */
 }

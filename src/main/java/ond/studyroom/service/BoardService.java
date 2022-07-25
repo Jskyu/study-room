@@ -22,8 +22,8 @@ public class BoardService {
     private final UserService userService;
     private final CategoryRepo cateRepo;
 
-    public List<BoardEntity> getBoardList(){
-        return boardRepo.findAll();
+    public List<BoardDto> getBoardList(){
+        return boardRepo.getBoardList();
     }
 
     public BoardEntity findById(Long boardId){
@@ -33,12 +33,14 @@ public class BoardService {
 
     @Transactional
     public Long createBoard(BoardDto dto){
-        return boardRepo.save(
-                dto.toEntity(
-                        dto,
-                        userService.findByUserId(dto.getUserId()),
-                        cateRepo.findById(dto.getCategoryId()).orElseThrow(() -> new NoSuchElementException("Not found Category. ID : " + dto.getCategoryId()))
-                ))
-                .getBoardId();
+        BoardEntity entity = dto.toEntity(
+                dto,
+                userService.findByUserId(dto.getUserId()),
+                cateRepo.findById(dto.getCategoryId()).orElseThrow(() -> new NoSuchElementException("Not found Category. ID : " + dto.getCategoryId()))
+        );
+        if (entity.getRegDate() == null) {
+            entity.setRegAndModDate();
+        }
+        return boardRepo.save(entity).getBoardId();
     }
 }

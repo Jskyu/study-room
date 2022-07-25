@@ -25,7 +25,12 @@ public class BoardServiceTest {
         String title = "test Title";
         String content = "test Content";
 
-        BoardDto boardDto = new BoardDto(userId, cateId, title, content);
+        BoardDto boardDto = BoardDto.builder()
+                .userId(userId)
+                .categoryId(cateId)
+                .title(title)
+                .content(content)
+                .build();
 
         //when
         Long boardId = -1L;
@@ -55,6 +60,7 @@ public class BoardServiceTest {
         BoardEntity data = boardService.findById(boardId);
 
         //then
+        System.out.println("data.toString() = " + data.toString());
         assertEquals(boardId, data.getBoardId());
     }
 }

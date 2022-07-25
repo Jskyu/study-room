@@ -12,4 +12,5 @@ spring:
     generate-ddl: true
     show-sql: false
     hibernate:
-      ddl-auto: create
+#      ddl-auto: create
+      ddl-auto: none
