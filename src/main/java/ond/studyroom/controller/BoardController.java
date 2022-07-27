@@ -19,7 +19,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping("/api/board/getBoardList")
     public Result<?> getBoardList() {
         log.info("Board API : getBoardList.");
@@ -31,7 +31,7 @@ public class BoardController {
         return new Result<>("");
     }
 
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping("/api/board/getBoard/{id}")
     public Result<?> getBoard(@PathVariable("id") String boardId) {
         log.info("Board API : getBoard. Request ID : " + boardId);
@@ -44,7 +44,7 @@ public class BoardController {
         return new Result<>(BoardDto.EntityToDto(findBoard));
     }
 
-    @CrossOrigin
+//    @CrossOrigin
     @PostMapping("/api/board/createBoard")
     public Result<String> createBoard(
             @RequestBody Map<String, Object> paramMap) {
