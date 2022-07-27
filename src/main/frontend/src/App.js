@@ -4,6 +4,7 @@ import {Container, Nav, Navbar} from 'react-bootstrap';
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Board from "./pages/board/Board";
 import Write from "./pages/board/Write";
+import View from "./pages/board/View";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                     <Route exact="/board">
                         <Route path={"/board/list"} element={<Board/>} />
                         <Route path={"/board/write"} element={<Write/>} />
+                        <Route path={"/board/view/:id"} element={<View/>} />
                     </Route>
                 </Routes>
             </div>

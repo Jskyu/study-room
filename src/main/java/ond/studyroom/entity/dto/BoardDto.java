@@ -25,19 +25,14 @@ public class BoardDto {
     private String regDate;
 
     public static BoardDto EntityToDto(BoardEntity entity) {
-        return BoardDto.builder()
+        BoardDtoBuilder builder = BoardDto.builder()
                 .id(entity.getBoardId())
-                .userId(entity.getUser().getUserNick())
                 .categoryId(entity.getCategory().getCtgrId())
                 .title(entity.getTitle())
-                .content(entity.getContent()).build();
-    }
+                .content(entity.getContent());
 
-    public BoardDto(String userId, Long categoryId, String title, String content) {
-        this.userId = userId;
-        this.categoryId = categoryId;
-        this.title = title;
-        this.content = content;
+        return builder.userNick("서마").build();
+//        return builder.build();
     }
 
     @QueryProjection

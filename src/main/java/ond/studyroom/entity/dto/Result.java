@@ -8,5 +8,4 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public class Result<T> {
     private T data;
-    private HttpStatus status;
 }

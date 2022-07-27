@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {Button, Table} from "react-bootstrap";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Board = () => {
 
-    let [boards, setBoards] = useState([])
+    let [boards, setBoards] = useState([]);
+    let navi = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/board/getBoardList')
@@ -12,7 +14,6 @@ const Board = () => {
             .then((res) => {
                 let data = [...res.data.data];
                 setBoards(data);
-                console.log(boards);
             })
     }, []);
 
@@ -36,7 +37,7 @@ const Board = () => {
                             return(
                                 <tr key={index} >
                                     <td>{item.id}</td>
-                                    <td>{item.title}</td>
+                                    <td><p onClick={ () => { navi('/board/view/' + item.id) }}>{item.title}</p></td>
                                     <td>{item.userNick}</td>
                                     <td>{item.regDate}</td>
                                 </tr>
@@ -47,37 +48,6 @@ const Board = () => {
             </Table>
         </div>
     )
-}
-
-const BoardTable = ({boards}) => {
-    return (
-        // <tbody>
-        //     {boards.map((item) => {
-        //         return (
-        //             <tr key={item.id}>
-        //                 <td>{item.id}</td>
-        //                 <td>{item.title}</td>
-        //                 <td>{item.userId}</td>
-        //                 <td>{item.id}</td>
-        //             </tr>
-        //         )
-        //     }
-        // )}
-        // </tbody>
-        <tbody>
-        {boards.map((item, index) => {
-            return(
-                <tr key={index} >
-                    <td>{item.id}</td>
-                    <td>{item.title}</td>
-                    <td>{item.userId}</td>
-                    <td>{item.id}</td>
-                </tr>
-            )
-        })
-        }
-        </tbody>
-    );
 }
 
 export default Board;
