@@ -14,9 +14,10 @@ gradlew bootrun
 ### React
 ```
 cd ${ProjectPath}/src/main/frontend
-npm install react-router-dom@6 --save
-npm install react-bootstrap --save
-npm install http-proxy-middleware --save
+npm install react-router-dom@6
+npm install react-bootstrap
+npm install http-proxy-middleware
+npm install axios
 
 npm start
 ```
